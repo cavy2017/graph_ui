@@ -1,0 +1,39 @@
+https://www.dashingd3js.com/svg-group-element-and-d3js
+https://leanpub.com/d3-tips-and-tricks/read
+
+Forces:
+https://habrahabr.ru/post/302968/
+https://github.com/d3/d3-force
+https://roshansanthosh.wordpress.com/2016/09/25/forces-in-d3-js-v4/
+https://stackoverflow.com/questions/18526739/dynamic-link-distance-in-d3-force-layout
+Basic article: http://bl.ocks.org/sathomas/11550728
+
+d3.layout.tree() использоваться не будет, т.к. в общем случае в ориентированном графе может быть более одной ссылки на один объект.
+Разобраться, что такое d3.forceSimulation, d3.forceLink
+
+
+Linking nodes by id: https://stackoverflow.com/questions/23986466/d3-force-layout-linking-nodes-by-name-instead-of-index
+var edges = [];
+json.Links.forEach(function(e) {
+    var sourceNode = json.Nodes.filter(function(n) {
+        return n.Id === e.Source;
+    })[0],
+        targetNode = json.Nodes.filter(function(n) {
+            return n.Id === e.Target;
+        })[0];
+
+    edges.push({
+        source: sourceNode,
+        target: targetNode,
+        value: e.Value
+    });
+});
+
+force
+    .nodes(json.Nodes)
+    .links(edges)
+    .start();
+
+var link = svg.selectAll(".link")
+    .data(edges)
+    ... 
