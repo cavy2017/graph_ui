@@ -13,27 +13,5 @@ d3.layout.tree() использоваться не будет, т.к. в общ�
 
 
 Linking nodes by id: https://stackoverflow.com/questions/23986466/d3-force-layout-linking-nodes-by-name-instead-of-index
-var edges = [];
-json.Links.forEach(function(e) {
-    var sourceNode = json.Nodes.filter(function(n) {
-        return n.Id === e.Source;
-    })[0],
-        targetNode = json.Nodes.filter(function(n) {
-            return n.Id === e.Target;
-        })[0];
 
-    edges.push({
-        source: sourceNode,
-        target: targetNode,
-        value: e.Value
-    });
-});
-
-force
-    .nodes(json.Nodes)
-    .links(edges)
-    .start();
-
-var link = svg.selectAll(".link")
-    .data(edges)
-    ... 
+!!! d3.layout.force() - устаревшая функция из v3, в v4 её нет. Читать именно про d3.forceSimulation
